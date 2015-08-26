@@ -1,5 +1,6 @@
-## R script to convert FCS data files for benchmark data set 1 in PhenoGraph paper 
+## R script to convert FCS data files for benchmark data set 1 in the PhenoGraph paper 
 ## (Levine et al, 2015) into tab-delimited text format with manually gated cluster labels
+## added
 ##
 ## Lukas Weber, Aug 2015
 ##
@@ -11,8 +12,9 @@
 ##
 ## Data source:
 ## ------------
-## Cytobank experiment page:
-## https://www.cytobank.org/cytobank/experiments/46259
+## Cytobank experiment pages:
+## Benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259
+## Benchmark data set 2: https://www.cytobank.org/cytobank/experiments/46102
 
 
 # Install "flowCore" package from Bioconductor if not already installed
@@ -20,7 +22,7 @@
 #biocLite("flowCore")
 
 
-# Download files
+# Download FCS files
 
 # download FCS files manually from https://www.cytobank.org/cytobank/experiments/46259
 # and save in directory named "FCS_files_dataset_1" (there should be 25 FCS files)
@@ -36,7 +38,8 @@ files_gated  # check
 files_notgated
 
 
-# Read FCS files for the 24 manually gated clusters and add cluster labels
+# Read FCS files for the 24 manually gated clusters (one FCS file per cluster) and add
+# cluster labels
 
 library(magrittr)
 library(flowCore)
@@ -65,7 +68,7 @@ file_out <- "processed_data/benchmark_dataset_1.txt"
 write.table(res, file = file_out, row.names = FALSE, quote = FALSE, sep = "\t")
 
 
-# Read FCS file for the ungated test data set
+# Read FCS file for the additional nongated test data (no cluster labels available)
 
 data_notgated <- exprs(read.FCS(files_notgated, transformation = FALSE))
 if (!all(colnames(data_notgated) == cols[-length(cols)])) stop("column names do not match")

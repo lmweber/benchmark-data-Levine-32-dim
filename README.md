@@ -1,7 +1,7 @@
 CyTOF benchmark data sets from PhenoGraph paper
 ===============================================
 
-This repository contains R code to prepare two manually gated benchmark data sets from the PhenoGraph paper (Levine et al, 2015) into a tab-delimited text format with cluster labels.
+This repository contains R code to prepare two manually gated benchmark data sets from the PhenoGraph paper (Levine et al, 2015) into a tab-delimited text format with cluster labels added.
 
 If you use these data sets, please cite the PhenoGraph paper (citation below). These are very useful data sets and we would like to give the authors credit, and thank them for making the data sets publicly available.
 
@@ -15,7 +15,7 @@ This repository contains the following files, which are explained in more detail
 
 - [prepare_dataset_1.R](prepare_dataset_1.R): R script to prepare benchmark data set 1
 - [prepare_dataset_2.R](prepare_dataset_2.R): R script to prepare benchmark data set 2
-- [processed_data](processed_data/) folder with the processed data files in tab-delimited text format, with cluster labels added where available
+- [processed_data](processed_data/) folder with the processed data files in tab-delimited text format, with cluster labels added where available (see below for details on the individual files)
 
 
 
@@ -49,18 +49,16 @@ The first benchmark data set contains manually gated healthy bone marrow mononuc
 
 This data set has relatively low dimensionality. No intracellular signaling proteins were measured.
 
-Manual gating was performed on all 13 surface markers. An additional "DNA x cell length" gating step was also applied to remove platelets from the data set. A total of 24 cell types were found by manual gating. The final data set contained 167,044 cells.
+Manual gating was performed on all 13 surface markers. An additional "DNA x cell length" gating step was also applied to remove platelets from the data set. A total of 24 cell types were found by manual gating. The final data set contained 167,044 cells (see https://www.cytobank.org/cytobank/experiments/46259).
 
 For the benchmark data set, the data were also split into two parts. For 49% of the cells (81,747 cells), manual gating cluster assignments were kept, to produce a "gold standard" data set. For the remaining 51% of cells (85,297 cells), gating assignments were removed in order to create a test data set.
 
 The data are provided as a set of 24 FCS files for the gold standard data set (one FCS file per cluster), and one additional combined FCS file for the test data set. Note that cluster labels are not available for the cells in the test data set.
 
-This data set is used in Figures 2A-B, S2A-C, and Data S1A-F in the PhenoGraph paper. For more information, see https://www.cytobank.org/cytobank/experiments/46259 and the additional links below.
-
 
 **Source for FCS data files:**
 
-- The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259. 24 FCS files are provided for the manually gated clusters in the gold standard data set (one file per cluster or cell type), and one additional FCS file for the test data set (see above).
+- The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259. A total of 24 FCS files are provided for the manually gated clusters in the gold standard data set (one file per cluster or cell type), and one additional FCS file for the test data set (see above).
 
 
 **Files in this repository:**
@@ -91,6 +89,7 @@ both surface markers and intracellular signaling proteins
 different protein panel than in benchmark data set 1
 
 benchmark-data-set-2-h1
+
 benchmark-data-set-2-h2
 
 
