@@ -1,8 +1,10 @@
-## R script to convert FCS data files for benchmark data set 1 in the PhenoGraph paper 
-## (Levine et al, 2015) into tab-delimited text format with manually gated cluster labels
-## added
+## R script to prepare benchmark data set 1 from PhenoGraph paper (Levine et al, 2015)
+##
+## converts FCS data files to text format, applies asinh transform, and adds cluster 
+## labels for the manually gated clusters
 ##
 ## Lukas Weber, Aug 2015
+##
 ##
 ## Reference:
 ## ----------
@@ -10,9 +12,7 @@
 ## Progenitor-like Cells that Correlate with Prognosis." Cell, 162, pp. 184-197. 
 ## http://www.sciencedirect.com/science/article/pii/S0092867415006376
 ##
-## Data source:
-## ------------
-## Cytobank experiment pages:
+## Cytobank experiment pages with FCS data files:
 ## Benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259
 ## Benchmark data set 2: https://www.cytobank.org/cytobank/experiments/46102
 
@@ -32,50 +32,80 @@
 
 files <- list.files("FCS_files_dataset_1", pattern = "\\.fcs$", full.names = TRUE)
 files_gated <- files[-grep("NotGated", files)]
-files_notgated <- files[grep("NotGated", files)]
+files_nongated <- files[grep("NotGated", files)]
 
 files_gated  # check
-files_notgated
+files_nongated
 
 
-# Read FCS files for the 24 manually gated clusters (one FCS file per cluster) and add
-# cluster labels
+# Read FCS files for the 24 manually gated clusters (one FCS file per cluster), apply 
+# asinh transform, add cluster labels, and save in tab-delimited text format
+# -----------------------------------------------------------------------------------
 
-library(magrittr)
-library(flowCore)
+library(magrittr)  # install from CRAN with install.packages() if required
+library(flowCore)  # install from Bioconductor (see above)
+
+# column names
 
 cols <- files_gated[1] %>% 
   read.FCS(., transformation = FALSE) %>% 
   exprs %>% 
   colnames %>% 
-  unname %>% 
-  c(., "cluster")
+  unname
 
 cols  # check
 
-res <- data.frame()
+# read FCS files
+
+data <- matrix(nrow = 0, ncol = length(cols))
+labels <- vector()
 
 for (i in seq_along(files_gated)) {
-  data <- exprs(read.FCS(files_gated[i], transformation = FALSE))
-  data <- cbind(data, cluster = i)
-  if (!all(colnames(data) == cols)) stop("column names do not match")
-  res <- rbind(res, data)
+  data_i <- exprs(read.FCS(files_gated[i], transformation = FALSE))
+  if (!all(colnames(data_i) == cols)) stop("column names do not match")
+  labels_i <- rep(i, nrow(data_i))
+  data <- rbind(data, data_i)
+  labels <- c(labels, labels_i)
 }
 
-# Save in tab-delimited text format
+dim(data)
 
-file_out <- "processed_data/benchmark_dataset_1.txt"
-write.table(res, file = file_out, row.names = FALSE, quote = FALSE, sep = "\t")
+# apply asinh transform
 
+asinh_scale <- 5
+data_scaled <- asinh(data / asinh_scale)
 
-# Read FCS file for the additional nongated test data (no cluster labels available)
+# save as text files
 
-data_notgated <- exprs(read.FCS(files_notgated, transformation = FALSE))
-if (!all(colnames(data_notgated) == cols[-length(cols)])) stop("column names do not match")
+res_notransform <- cbind(data, labels)
+res_scaled <- cbind(data_scaled, labels)
 
-# Save in tab-delimited text format
+file_out_notransform <- "processed_data/benchmark_dataset_1_notransform.txt"
+file_out_scaled <- "processed_data/benchmark_dataset_1.txt"
 
-file_out_notgated <- "processed_data/benchmark_dataset_1_notgated.txt"
-write.table(data_notgated, file = file_out_notgated, 
+write.table(res_notransform, file = file_out_notransform, 
             row.names = FALSE, quote = FALSE, sep = "\t")
+write.table(res_scaled, file = file_out_scaled, 
+            row.names = FALSE, quote = FALSE, sep = "\t")
+
+
+# Read FCS file for nongated test data, apply asinh transform, and save in tab-delimited 
+# text format (note no cluster labels are available here)
+# --------------------------------------------------------------------------------------
+
+data_nongated <- exprs(read.FCS(files_nongated, transformation = FALSE))
+if (!all(colnames(data_nongated) == cols)) stop("column names do not match")
+
+dim(data_nongated)
+
+data_nongated_scaled <- asinh(data_nongated / asinh_scale)
+
+file_out_nongated_notransform <- "processed_data/benchmark_dataset_1_nongated_notransform.txt"
+file_out_nongated_scaled <- "processed_data/benchmark_dataset_1_nongated.txt"
+
+write.table(data_nongated, file = file_out_nongated_notransform, 
+            row.names = FALSE, quote = FALSE, sep = "\t")
+write.table(data_nongated_scaled, file = file_out_nongated_scaled, 
+            row.names = FALSE, quote = FALSE, sep = "\t")
+
 
