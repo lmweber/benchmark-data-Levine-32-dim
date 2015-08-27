@@ -47,7 +47,7 @@ In this repository, we provide R code to read the FCS files from these benchmark
 
 The first benchmark data set contains manually gated healthy bone marrow mononuclear cell (BMMC) data from one healthy individual, with 13 surface markers measured. The surface markers are: CD45, CD45RA, CD19, CD11b, CD4, CD8, CD34, CD20, CD33, CD123, CD38, CD90, and CD3.
 
-This data set has relatively low dimensionality. No intracellular signaling proteins were measured.
+This data set has relatively low dimensionality. No intracellular signaling proteins were measured, since healthy BMMCs can be characterized from surface markers alone (Levine et al, 2015).
 
 Manual gating was performed on all 13 surface markers. An additional "DNA x cell length" gating step was also applied to remove platelets. A total of 24 cell types were found by manual gating. The final data set contained 167,044 cells (see https://www.cytobank.org/cytobank/experiments/46259).
 
@@ -56,25 +56,25 @@ Of the 167,044 cells, around 49% (81,747 cells) were assigned to one of the 24 c
 
 **Data source:**
 
-- The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259.
+- The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259
 
-    The data are provided as a set of 24 FCS files for the gold standard data set (one FCS file per cluster), and one additional combined FCS file for the test data set. Note that cluster labels are not available for the cells in the test data set.
+    The data are provided as a set of 24 FCS files for the manually gated cells (one FCS file per cell type), and one additional combined FCS file for the unassigned cells. Cluster labels are not available for the unassigned cells.
 
 
 **Files in this repository:**
 
-- The R script [prepare_dataset_1.R](prepare_dataset_1.R) reads the FCS files, adds cluster labels for the 24 manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
+- The R script [prepare_dataset_1.R](prepare_dataset_1.R) reads the FCS files, adds cluster labels for the manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
 
 - The [processed_data](processed_data/) folder contains the final tab-delimited text files.
 
-    - [benchmark_dataset_1.txt](processed_data/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](processed_data/benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
+    - [benchmark_dataset_1.txt](processed_data/dataset_1/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](processed_data/dataset_1/benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
     
-    - [benchmark_dataset_1_unassigned.txt](processed_data/benchmark_dataset_1_unassigned.txt) contains the unassigned cells in the test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available here, since these cells were not assigned to any cell types by the manual gating. [benchmark_dataset_1_unassigned_notransform.txt](processed_data/benchmark_dataset_1_unassigned_notransform.txt) contains the same data without the `asinh` transform.
+    - [benchmark_dataset_1_unassigned.txt](processed_data/dataset_1/benchmark_dataset_1_unassigned.txt) contains the unassigned cells in the test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for these cells, since the manual gating did not assign them to any cell types. [benchmark_dataset_1_unassigned_notransform.txt](processed_data/dataset_1/benchmark_dataset_1_unassigned_notransform.txt) contains the same data without the `asinh` transform.
 
 
 **Original reference:**
 
-This data set was originally published in the following paper (Bendall et al, 2011), however the version of the data published with the PhenoGraph paper includes additional processing steps.
+This data set was originally published in the following paper (Bendall et al, 2011):
 
 - Bendall et al., (2011). *Single-cell mass cytometry of differential immune and drug responses across a human hematopoietic continuum.* Science, 332, pp. 687-696. http://www.ncbi.nlm.nih.gov/pubmed/21551058 (data available at http://reports.cytobank.org/1/v1 or https://www.cytobank.org/cytobank/experiments/6033).
 
@@ -82,20 +82,31 @@ This data set was originally published in the following paper (Bendall et al, 20
 
 ## Benchmark data set 2
 
-The second benchmark data set
+The second benchmark data set contains bone marrow mononuclear cell (BMMC) mass cytometry data from two healthy adult donors, labeled H1 and H2.
 
-two individuals
+A total of 32 surface markers were measured. However, only 19 of these were used for the manual gating. The manual gating identified 14 cell types in both individuals. The 19 surface markers used for gating were: CD3, CD4, CD7, CD8, CD15, CD16, CD19, CD20, CD34, CD38, CD41, CD44, CD45, CD61, CD64, CD123, CD11c, CD235a/b, and HLA-DR.
 
-how many dimensions/markers
+All 32 surface markers were used for the automatic clustering with PhenoGraph shown in the paper. No intracellular signaling proteins were measured, since healthy BMMCs can be characterized from surface markers alone (Levine et al, 2015).
 
-both surface markers and intracellular signaling proteins
+As for the first data set, the manual gating left a large portion of unassigned cells, which were not assigned to any of the 14 cell types identified. For donor H1, 72,463 cells were assigned to populations, and 118,888 cells remained unassigned (total 191,351 cells). For donor H2, 31,721 cells were assigned to populations, and 42,555 cells remained unassigned (total 74,276 cells). The identified cells are used as a "gold standard" data set, and the unassigned cells are kept as a test set with the assumption that similar clusters are represented, although some additional unknown cell types may also be present. (See Levine et al, 2015, Supplemental Experimental Procedures, for more details.)
 
-different protein panel than in benchmark data set 1
 
-benchmark-data-set-2-h1
+**Data source:**
 
-benchmark-data-set-2-h2
+- The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 2: https://www.cytobank.org/cytobank/experiments/46102
 
+    The data are provided as a set of 28 FCS files for the manually gated cells (one FCS file per cell type per individual), and one additional combined FCS file for the unassigned cells. Cluster labels are not available for the unassigned cells.
+
+
+**Files in this repository:**
+
+- The R script [prepare_dataset_2.R](prepare_dataset_2.R) reads the FCS files, adds cluster labels for the manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
+
+- The [processed_data](processed_data/) folder contains the final tab-delimited text files.
+
+    - [benchmark_dataset_2_H1.txt](processed_data/dataset_2/benchmark_dataset_2_H1.txt) and [benchmark_dataset_2_H2.txt](processed_data/dataset_2/benchmark_dataset_2_H2.txt) contain the data from the 14 manually gated clusters for the two individuals H1 and H2, with `asinh` transform applied, and cluster labels added. [benchmark_dataset_2_H1_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H1_notransform.txt) and [benchmark_dataset_2_H2_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H2_notransform.txt) contain the same data without the `asinh` transform.
+
+    - [benchmark_dataset_2_H1_unassigned.txt](processed_data/dataset_2/benchmark_dataset_2_H1_unassigned.txt) and [benchmark_dataset_2_H2_unassigned.txt](processed_data/dataset_2/benchmark_dataset_2_H2_unassigned.txt) contain the unassigned cells for the two individuals H1 and H2, with `asinh` transform applied. Cluster labels are not available for these cells, since the manual gating did not assign them to any cell types. [benchmark_dataset_2_H1_unassigned_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H1_unassigned_notransform.txt) and [benchmark_dataset_2_H2_unassigned_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H2_unassigned_notransform.txt) contain the same data without the `asinh` transform.
 
 
 ## More information

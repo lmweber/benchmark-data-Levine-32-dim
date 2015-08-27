@@ -80,8 +80,10 @@ data_scaled <- asinh(data / asinh_scale)
 res_notransform <- cbind(data, labels)
 res_scaled <- cbind(data_scaled, labels)
 
-file_out_notransform <- "processed_data/benchmark_dataset_1_notransform.txt"
-file_out_scaled <- "processed_data/benchmark_dataset_1.txt"
+file_out_notransform <- 
+  "processed_data/dataset_1/benchmark_dataset_1_notransform.txt"
+file_out_scaled <- 
+  "processed_data/dataset_1/benchmark_dataset_1.txt"
 
 write.table(res_notransform, file = file_out_notransform, 
             row.names = FALSE, quote = FALSE, sep = "\t")
@@ -100,8 +102,10 @@ dim(data_unassigned)
 
 data_unassigned_scaled <- asinh(data_unassigned / asinh_scale)
 
-file_out_unassigned_notransform <- "processed_data/benchmark_dataset_1_unassigned_notransform.txt"
-file_out_unassigned_scaled <- "processed_data/benchmark_dataset_1_unassigned.txt"
+file_out_unassigned_notransform <- 
+  "processed_data/dataset_1/benchmark_dataset_1_unassigned_notransform.txt"
+file_out_unassigned_scaled <- 
+  "processed_data/dataset_1/benchmark_dataset_1_unassigned.txt"
 
 write.table(data_unassigned, file = file_out_unassigned_notransform, 
             row.names = FALSE, quote = FALSE, sep = "\t")
