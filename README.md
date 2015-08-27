@@ -1,9 +1,9 @@
-CyTOF benchmark data sets from PhenoGraph paper
-===============================================
+CyTOF benchmark data sets from Levine et al (2015)
+==================================================
 
 This repository contains R code to prepare two manually gated benchmark data sets from the PhenoGraph paper (Levine et al, 2015) into a tab-delimited text format with cluster labels added.
 
-If you use these data sets, please cite the PhenoGraph paper (citation below). These are very useful data sets and we would like to give the authors credit, and thank them for making the data sets publicly available.
+If you use these data sets, please cite the PhenoGraph paper. These are very useful data sets, and we would like to ensure that the authors receive credit and thank them for making the data publicly available:
 
 - Levine et al., (2015). *Data-Driven Phenotypic Dissection of AML Reveals Progenitor-like Cells that Correlate with Prognosis.* Cell, 162, pp. 184-197. http://www.sciencedirect.com/science/article/pii/S0092867415006376
 
@@ -67,9 +67,9 @@ For the benchmark data set, the data were also split into two parts. For 49% of 
 
 - The [processed_data](processed_data/) folder contains the final tab-delimited text files.
 
-    [benchmark_dataset_1.txt](processed_data/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
+    - [benchmark_dataset_1.txt](processed_data/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
     
-    [benchmark_dataset_1_notgated.txt](processed_data/benchmark_dataset_1_notgated.txt) contains the nongated test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for this part of the data set. [benchmark_dataset_1_notgated_notransform.txt](benchmark_dataset_1_notgated_notransform.txt) contains the same data without the `asinh` transform.
+    - [benchmark_dataset_1_notgated.txt](processed_data/benchmark_dataset_1_notgated.txt) contains the nongated test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for this part of the data set. [benchmark_dataset_1_notgated_notransform.txt](benchmark_dataset_1_notgated_notransform.txt) contains the same data without the `asinh` transform.
 
 
 **Original reference:**
