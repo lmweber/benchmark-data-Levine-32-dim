@@ -69,7 +69,7 @@ For the benchmark data set, the data were also split into two parts. For 49% of 
 
     - [benchmark_dataset_1.txt](processed_data/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
     
-    - [benchmark_dataset_1_notgated.txt](processed_data/benchmark_dataset_1_notgated.txt) contains the nongated test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for this part of the data set. [benchmark_dataset_1_notgated_notransform.txt](benchmark_dataset_1_notgated_notransform.txt) contains the same data without the `asinh` transform.
+    - [benchmark_dataset_1_nongated.txt](processed_data/benchmark_dataset_1_nongated.txt) contains the nongated test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for this part of the data set. [benchmark_dataset_1_nongated_notransform.txt](benchmark_dataset_1_nongated_notransform.txt) contains the same data without the `asinh` transform.
 
 
 **Original reference:**
