@@ -65,7 +65,7 @@ Of the 167,044 cells, around 49% (81,747 cells) were assigned to one of the 24 c
 
 - The R script [prepare_dataset_1.R](prepare_dataset_1.R) reads the FCS files, adds cluster labels for the manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
 
-- The [processed_data](processed_data/) folder contains the final tab-delimited text files.
+- The [processed_data/dataset_1](processed_data/dataset_1/) folder contains the final tab-delimited text files.
 
     - [benchmark_dataset_1.txt](processed_data/dataset_1/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](processed_data/dataset_1/benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
     
@@ -106,7 +106,7 @@ As for the first data set, the manual gating left a large portion of unassigned 
 
 - The R script [prepare_dataset_2.R](prepare_dataset_2.R) reads the FCS files, adds cluster labels for the manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
 
-- The [processed_data](processed_data/) folder contains the final tab-delimited text files.
+- The [processed_data/dataset_2](processed_data/dataset_2/) folder contains the final tab-delimited text files.
 
     - [benchmark_dataset_2_H1.txt](processed_data/dataset_2/benchmark_dataset_2_H1.txt) and [benchmark_dataset_2_H2.txt](processed_data/dataset_2/benchmark_dataset_2_H2.txt) contain the data from the 14 manually gated clusters for the two individuals H1 and H2, with `asinh` transform applied, and cluster labels added. [benchmark_dataset_2_H1_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H1_notransform.txt) and [benchmark_dataset_2_H2_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H2_notransform.txt) contain the same data without the `asinh` transform.
 
