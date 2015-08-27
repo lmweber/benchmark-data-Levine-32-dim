@@ -84,9 +84,13 @@ This data set was originally published in the following paper (Bendall et al, 20
 
 The second benchmark data set contains bone marrow mononuclear cell (BMMC) mass cytometry data from two healthy adult donors, labeled H1 and H2.
 
-A total of 32 surface markers were measured. However, only 19 of these were used for the manual gating. The manual gating identified 14 cell types in both individuals. The 19 surface markers used for gating were: CD3, CD4, CD7, CD8, CD15, CD16, CD19, CD20, CD34, CD38, CD41, CD44, CD45, CD61, CD64, CD123, CD11c, CD235a/b, and HLA-DR.
+A total of 32 surface markers were measured. However, only 19 of these were used for the manual gating. The manual gating identified 14 cell types in both individuals.
 
-All 32 surface markers were used for the automatic clustering with PhenoGraph shown in the paper. No intracellular signaling proteins were measured, since healthy BMMCs can be characterized from surface markers alone (Levine et al, 2015).
+The 19 surface markers used for gating were: CD3, CD4, CD7, CD8, CD15, CD16, CD19, CD20, CD34, CD38, CD41, CD44, CD45, CD61, CD64, CD123, CD11c, CD235a/b, and HLA-DR.
+
+All 32 surface markers were used for the automatic clustering with PhenoGraph shown in the paper.
+
+No intracellular signaling proteins were measured, since healthy BMMCs can be characterized from surface markers alone (Levine et al, 2015).
 
 As for the first data set, the manual gating left a large portion of unassigned cells, which were not assigned to any of the 14 cell types identified. For donor H1, 72,463 cells were assigned to populations, and 118,888 cells remained unassigned (total 191,351 cells). For donor H2, 31,721 cells were assigned to populations, and 42,555 cells remained unassigned (total 74,276 cells). The identified cells are used as a "gold standard" data set, and the unassigned cells are kept as a test set with the assumption that similar clusters are represented, although some additional unknown cell types may also be present. (See Levine et al, 2015, Supplemental Experimental Procedures, for more details.)
 
@@ -95,7 +99,7 @@ As for the first data set, the manual gating left a large portion of unassigned 
 
 - The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 2: https://www.cytobank.org/cytobank/experiments/46102
 
-    The data are provided as a set of 28 FCS files for the manually gated cells (one FCS file per cell type per individual), and one additional combined FCS file for the unassigned cells. Cluster labels are not available for the unassigned cells.
+    The data are provided as a set of 28 FCS files for the manually gated cells (one FCS file per cell type per individual), and two additional combined FCS files (one per individual) for the unassigned cells. Cluster labels are not available for the unassigned cells.
 
 
 **Files in this repository:**
