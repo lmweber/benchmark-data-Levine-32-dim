@@ -15,7 +15,7 @@ This repository contains the following files, which are explained in more detail
 
 - [prepare_dataset_1.R](prepare_dataset_1.R): R script to prepare benchmark data set 1
 - [prepare_dataset_2.R](prepare_dataset_2.R): R script to prepare benchmark data set 2
-- [processed_data](processed_data/): folder with processed data files in tab-delimited text format, with cluster labels added where available. Files are provided with and without a standard `asinh` transform applied to the data (see below for more details).
+- [processed_data](processed_data/): folder with processed data files in tab-delimited text format, with cluster labels added where available. Files are provided with and without a standard `asinh` transform applied (see below for details on the individual files).
 
 
 
@@ -39,7 +39,7 @@ We believe these benchmark data sets will be very useful for testing high-dimens
 
 The data sets were made publicly available through the [Cytobank](https://www.cytobank.org/) platform (see links below). The files are saved in Flow Cytometry Standard (FCS) binary file format, which is the most commonly used file format in the flow and mass cytometry community. However, since it is a binary format, specialized software tools are required to read the files, making them difficult to access for users from other fields.
 
-In this repository, we provide R code to read the FCS files from these benchmark data sets, convert the data to tab-delimited text format, and add cluster labels from the manual gating shown in the PhenoGraph paper. We use the [flowCore](http://bioconductor.org/packages/release/bioc/html/flowCore.html) R/Bioconductor package to read the FCS files. Our aim is to make these data sets accessible to users unfamiliar with the FCS file format, so they can be used to test high-dimensional clustering algorithms.
+In this repository, we provide R code to read the FCS files from these benchmark data sets, convert the data to tab-delimited text format, and add cluster labels from the manual gating in the PhenoGraph paper. We use the [flowCore](http://bioconductor.org/packages/release/bioc/html/flowCore.html) R/Bioconductor package to read the FCS files. Our aim is to make these data sets accessible to users unfamiliar with the FCS file format, so they can be used to test high-dimensional clustering algorithms.
 
 
 
@@ -49,9 +49,9 @@ The first benchmark data set contains manually gated healthy bone marrow mononuc
 
 This data set has relatively low dimensionality. No intracellular signaling proteins were measured.
 
-Manual gating was performed on all 13 surface markers. An additional "DNA x cell length" gating step was also applied to remove platelets. A total of 24 cell types were found by manual gating, and the final data set contained 167,044 cells (see https://www.cytobank.org/cytobank/experiments/46259).
+Manual gating was performed on all 13 surface markers. An additional "DNA x cell length" gating step was also applied to remove platelets. A total of 24 cell types were found by manual gating. The final data set contained 167,044 cells (see https://www.cytobank.org/cytobank/experiments/46259).
 
-For the benchmark data set, the data were also split into two parts. For 49% of the cells (81,747 cells), manual gating cluster assignments were kept, to produce a "gold standard" data set. For the remaining 51% of cells (85,297 cells), gating assignments were removed in order to create a test data set. The same clusters or cell types should be present in both parts of the data set, since they are sourced from the same biological sample.
+Of the 167,044 cells, around 49% (81,747 cells) were assigned to one of the 24 cell types by the manual gating. The remaining 51% (85,297 cells) were not assigned to any cell type. Therefore, the benchmark data set was split into two parts. The first part is the "gold standard" data set, which contains the 49% of cells that were assigned to cell types by manual gating. The second part (51%) contains the unassigned cells, which are retained as a test data set. Since both parts are sourced from the same biological sample, similar clusters should exist in the test data set, although some additional unknown cell types may also be present. (See Levine et al, 2015, Supplemental Experimental Procedures, for more details.)
 
 
 **Data source:**
@@ -69,7 +69,7 @@ For the benchmark data set, the data were also split into two parts. For 49% of 
 
     - [benchmark_dataset_1.txt](processed_data/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](processed_data/benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
     
-    - [benchmark_dataset_1_nongated.txt](processed_data/benchmark_dataset_1_nongated.txt) contains the nongated test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for this part of the data set. [benchmark_dataset_1_nongated_notransform.txt](processed_data/benchmark_dataset_1_nongated_notransform.txt) contains the same data without the `asinh` transform.
+    - [benchmark_dataset_1_unassigned.txt](processed_data/benchmark_dataset_1_unassigned.txt) contains the unassigned cells in the test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available here, since these cells were not assigned to any cell types by the manual gating. [benchmark_dataset_1_unassigned_notransform.txt](processed_data/benchmark_dataset_1_unassigned_notransform.txt) contains the same data without the `asinh` transform.
 
 
 **Original reference:**

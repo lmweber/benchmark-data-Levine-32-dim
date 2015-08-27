@@ -32,10 +32,10 @@
 
 files <- list.files("FCS_files_dataset_1", pattern = "\\.fcs$", full.names = TRUE)
 files_gated <- files[-grep("NotGated", files)]
-files_nongated <- files[grep("NotGated", files)]
+files_unassigned <- files[grep("NotGated", files)]
 
 files_gated  # check
-files_nongated
+files_unassigned
 
 
 # Read FCS files for the 24 manually gated clusters (one FCS file per cluster), apply 
@@ -89,23 +89,23 @@ write.table(res_scaled, file = file_out_scaled,
             row.names = FALSE, quote = FALSE, sep = "\t")
 
 
-# Read FCS file for nongated test data, apply asinh transform, and save in tab-delimited 
-# text format (note no cluster labels are available here)
-# --------------------------------------------------------------------------------------
+# Read FCS file for unassigned cells (no cluster labels available), apply asinh
+# transform, and save in tab-delimited text format
+# -----------------------------------------------------------------------------
 
-data_nongated <- exprs(read.FCS(files_nongated, transformation = FALSE))
-if (!all(colnames(data_nongated) == cols)) stop("column names do not match")
+data_unassigned <- exprs(read.FCS(files_unassigned, transformation = FALSE))
+if (!all(colnames(data_unassigned) == cols)) stop("column names do not match")
 
-dim(data_nongated)
+dim(data_unassigned)
 
-data_nongated_scaled <- asinh(data_nongated / asinh_scale)
+data_unassigned_scaled <- asinh(data_unassigned / asinh_scale)
 
-file_out_nongated_notransform <- "processed_data/benchmark_dataset_1_nongated_notransform.txt"
-file_out_nongated_scaled <- "processed_data/benchmark_dataset_1_nongated.txt"
+file_out_unassigned_notransform <- "processed_data/benchmark_dataset_1_unassigned_notransform.txt"
+file_out_unassigned_scaled <- "processed_data/benchmark_dataset_1_unassigned.txt"
 
-write.table(data_nongated, file = file_out_nongated_notransform, 
+write.table(data_unassigned, file = file_out_unassigned_notransform, 
             row.names = FALSE, quote = FALSE, sep = "\t")
-write.table(data_nongated_scaled, file = file_out_nongated_scaled, 
+write.table(data_unassigned_scaled, file = file_out_unassigned_scaled, 
             row.names = FALSE, quote = FALSE, sep = "\t")
 
 
