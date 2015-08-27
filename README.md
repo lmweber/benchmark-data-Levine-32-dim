@@ -15,7 +15,7 @@ This repository contains the following files, which are explained in more detail
 
 - [prepare_dataset_1.R](prepare_dataset_1.R): R script to prepare benchmark data set 1
 - [prepare_dataset_2.R](prepare_dataset_2.R): R script to prepare benchmark data set 2
-- [processed_data](processed_data/) folder with the processed data files in tab-delimited text format, with cluster labels added where available (see below for details on the individual files)
+- [processed_data](processed_data/): folder with processed data files in tab-delimited text format, with cluster labels added where available. Files are provided with and without a standard `asinh` transform applied to the data (see below for more details).
 
 
 
@@ -29,17 +29,17 @@ The Levine et al (2015) paper also included several data sets from acute myeloid
 
 
 
-## PhenoGraph paper and benchmark data sets
+## Benchmark data sets in PhenoGraph paper
 
-The PhenoGraph paper includes two benchmark data sets, consisting of manually gated healthy bone marrow mononuclear cell (BMMC) mass cytometry data from three healthy individuals. The benchmark data sets are used in Figures 2A-B, S2A-C, and Data S1A-F (benchmark data set 1); and Figure S2D and Data S1G-I (benchmark data set 2) in the paper.
+The PhenoGraph paper includes two benchmark data sets, consisting of manually gated mass cytometry data from healthy bone marrow mononuclear cells (BMMC), from three healthy individuals. The benchmark data sets are used in Figures 2A-B, S2A-C, and Data S1A-F (benchmark data set 1); and Figure S2D and Data S1G-I (benchmark data set 2) in the paper.
 
-"Manual gating" refers to the traditional flow cytometry analysis technique of manually searching for clusters or regions of high density in a series of two-dimensional scatter plots. While expert manual gating is quite reliable in low-dimensional flow cytometry data sets, it quickly becomes unwieldy in higher-dimensional CyTOF data sets. Algorithms such as PhenoGraph aim to discover clusters automatically. However, this is also computationally difficult due to the "curse of dimensionality".
+"Manual gating" refers to the traditional flow cytometry analysis technique of visually searching for clusters or regions of high density in a series of two-dimensional scatter plots. While expert manual gating is quite reliable in low-dimensional flow cytometry data sets, it quickly becomes unwieldy in higher-dimensional CyTOF data sets. Algorithms such as PhenoGraph aim to discover clusters automatically. However, this is also computationally difficult due to the "curse of dimensionality".
 
 We believe these benchmark data sets will be very useful for testing high-dimensional (in the order of 10-100 dimensions) clustering algorithms.
 
-The data sets were made publicly available through the [Cytobank](https://www.cytobank.org/) data repository and analysis platform (see links below). The files are saved in Flow Cytometry Standard (FCS) binary file format, which is the most commonly used file format in the flow and mass cytometry community. However, since it is a binary format, specialized software tools are required to read the files, making them difficult to access for users from other fields.
+The data sets were made publicly available through the [Cytobank](https://www.cytobank.org/) platform (see links below). The files are saved in Flow Cytometry Standard (FCS) binary file format, which is the most commonly used file format in the flow and mass cytometry community. However, since it is a binary format, specialized software tools are required to read the files, making them difficult to access for users from other fields.
 
-In this repository, we provide R code to access the FCS files from these benchmark data sets, and convert them to tab-delimited text format. We use the [flowCore](http://bioconductor.org/packages/release/bioc/html/flowCore.html) R/Bioconductor package to read the files, and add cluster labels from the manual gating in the PhenoGraph paper. Our aim is to make these data sets accessible to users unfamiliar with the FCS file format, so that they can be used to test high-dimensional clustering algorithms.
+In this repository, we provide R code to read the FCS files from these benchmark data sets, convert the data to tab-delimited text format, and add cluster labels from the manual gating shown in the PhenoGraph paper. We use the [flowCore](http://bioconductor.org/packages/release/bioc/html/flowCore.html) R/Bioconductor package to read the FCS files. Our aim is to make these data sets accessible to users unfamiliar with the FCS file format, so they can be used to test high-dimensional clustering algorithms.
 
 
 
@@ -49,26 +49,30 @@ The first benchmark data set contains manually gated healthy bone marrow mononuc
 
 This data set has relatively low dimensionality. No intracellular signaling proteins were measured.
 
-Manual gating was performed on all 13 surface markers. An additional "DNA x cell length" gating step was also applied to remove platelets from the data set. A total of 24 cell types were found by manual gating. The final data set contained 167,044 cells (see https://www.cytobank.org/cytobank/experiments/46259).
+Manual gating was performed on all 13 surface markers. An additional "DNA x cell length" gating step was also applied to remove platelets. A total of 24 cell types were found by manual gating, and the final data set contained 167,044 cells (see https://www.cytobank.org/cytobank/experiments/46259).
 
-For the benchmark data set, the data were also split into two parts. For 49% of the cells (81,747 cells), manual gating cluster assignments were kept, to produce a "gold standard" data set. For the remaining 51% of cells (85,297 cells), gating assignments were removed in order to create a test data set.
-
-The data are provided as a set of 24 FCS files for the gold standard data set (one FCS file per cluster), and one additional combined FCS file for the test data set. Note that cluster labels are not available for the cells in the test data set.
+For the benchmark data set, the data were also split into two parts. For 49% of the cells (81,747 cells), manual gating cluster assignments were kept, to produce a "gold standard" data set. For the remaining 51% of cells (85,297 cells), gating assignments were removed in order to create a test data set. The same clusters or cell types should be present in both parts of the data set, since they are sourced from the same biological sample.
 
 
-**Source for FCS data files:**
+**Data source:**
 
-- The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259. A total of 24 FCS files are provided for the manually gated clusters in the gold standard data set (one file per cluster or cell type), and one additional FCS file for the test data set (see above).
+- The FCS data files can be downloaded from the Cytobank experiment page for benchmark data set 1: https://www.cytobank.org/cytobank/experiments/46259.
+
+    The data are provided as a set of 24 FCS files for the gold standard data set (one FCS file per cluster), and one additional combined FCS file for the test data set. Note that cluster labels are not available for the cells in the test data set.
 
 
 **Files in this repository:**
 
-- The R script [prepare_dataset_1.R](prepare_dataset_1.R) reads the FCS files, adds cluster labels for the 24 manually gated clusters in the gold standard data set, and saves the data in tab-delimited text format.
+- The R script [prepare_dataset_1.R](prepare_dataset_1.R) reads the FCS files, adds cluster labels for the 24 manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
 
-- The [processed_data](processed_data/) folder contains the final tab-delimited text files. [benchmark_dataset_1.txt](processed_data/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data (49% of the total data set), with cluster labels added. [benchmark_dataset_1_notgated.txt](processed_data/benchmark_dataset_1_notgated.txt) contains the nongated test data (51% of the total data set), where cluster labels are not available. The nongated part of the data set can be used as test data since it is sourced from the same biological sample, so the same clusters or cell types should be present.
+- The [processed_data](processed_data/) folder contains the final tab-delimited text files.
+
+    [benchmark_dataset_1.txt](processed_data/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
+    
+    [benchmark_dataset_1_notgated.txt](processed_data/benchmark_dataset_1_notgated.txt) contains the nongated test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for this part of the data set. [benchmark_dataset_1_notgated_notransform.txt](benchmark_dataset_1_notgated_notransform.txt) contains the same data without the `asinh` transform.
 
 
-**Original source:**
+**Original reference:**
 
 This data set was originally published in the following paper (Bendall et al, 2011), however the version of the data published with the PhenoGraph paper includes additional processing steps.
 
@@ -98,7 +102,7 @@ benchmark-data-set-2-h2
 
 Further details can be found on the PhenoGraph page on the Dana Pe'er lab web page: http://www.c2b2.columbia.edu/danapeerlab/html/phenograph.html
 
-This includes links to the paper and related data sets, including the benchmark data sets. The data were published in FCS format on [Cytobank](https://www.cytobank.org/). Note that a (free) Cytobank account is required to access the Cytobank links.
+This includes links to the paper and related data sets, including the benchmark data sets used here. The data were published in FCS format on [Cytobank](https://www.cytobank.org/). Note that a (free) Cytobank account is required to access the Cytobank links.
 
 - Cytobank project page (contains links to all data sets from the PhenoGraph paper): https://www.cytobank.org/cytobank/experiments?project=750
 
