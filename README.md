@@ -11,11 +11,17 @@ If you use these data sets, please cite the PhenoGraph paper. These are very use
 
 ## Contents
 
-This repository contains the following files, which are explained in more detail below.
+This repository contains the following files and folders. See below for more details about the individual files.
 
-- [prepare_dataset_1.R](prepare_dataset_1.R): R script to prepare benchmark data set 1
-- [prepare_dataset_2.R](prepare_dataset_2.R): R script to prepare benchmark data set 2
-- [processed_data](processed_data/): folder with processed data files in tab-delimited text format, with cluster labels added where available. Files are provided with and without a standard `asinh` transform applied (see below for details on the individual files).
+R scripts to prepare data files for benchmark data sets 1 and 2:
+
+- [prepare_dataset_1.R](prepare_dataset_1.R)
+- [prepare_dataset_2.R](prepare_dataset_2.R)
+
+Folders with processed data files for benchmark datasets 1 and 2 (with cluster labels added where available, with and without `asinh` transform, saved in tab-delimited text format):
+
+- [processed_data/dataset_1/](processed_data/dataset_1/)
+- [processed_data/dataset_2/](processed_data/dataset_2/)
 
 
 
@@ -65,11 +71,15 @@ Of the 167,044 cells, around 49% (81,747 cells) were assigned to one of the 24 c
 
 - The R script [prepare_dataset_1.R](prepare_dataset_1.R) reads the FCS files, adds cluster labels for the manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
 
-- The [processed_data/dataset_1](processed_data/dataset_1/) folder contains the final tab-delimited text files.
+- The [processed_data/dataset_1/](processed_data/dataset_1/) folder contains the final tab-delimited text files.
 
-    - [benchmark_dataset_1.txt](processed_data/dataset_1/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added. [benchmark_dataset_1_notransform.txt](processed_data/dataset_1/benchmark_dataset_1_notransform.txt) contains the same data without the `asinh` transform.
-    
-    - [benchmark_dataset_1_unassigned.txt](processed_data/dataset_1/benchmark_dataset_1_unassigned.txt) contains the unassigned cells in the test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for these cells, since the manual gating did not assign them to any cell types. [benchmark_dataset_1_unassigned_notransform.txt](processed_data/dataset_1/benchmark_dataset_1_unassigned_notransform.txt) contains the same data without the `asinh` transform.
+    - [benchmark_dataset_1.txt](processed_data/dataset_1/benchmark_dataset_1.txt) contains the data from the 24 manually gated clusters in the gold standard data set (49% of the total data set), with `asinh` transform applied, and cluster labels added.
+
+    - [benchmark_dataset_1_notransform.txt](processed_data/dataset_1/benchmark_dataset_1_notransform.txt) contains the data from the manually gated clusters without the `asinh` transform.
+
+    - [benchmark_dataset_1_unassigned.txt](processed_data/dataset_1/benchmark_dataset_1_unassigned.txt) contains the unassigned cells in the test data set (51% of the total data set), with `asinh` transform applied. Cluster labels are not available for these cells, since the manual gating did not assign them to any cell types.
+
+    - [benchmark_dataset_1_unassigned_notransform.txt](processed_data/dataset_1/benchmark_dataset_1_unassigned_notransform.txt) contains the data from the unassigned cells without the `asinh` transform.
 
 
 **Original reference:**
@@ -106,11 +116,15 @@ As for the first data set, the manual gating left a large portion of unassigned 
 
 - The R script [prepare_dataset_2.R](prepare_dataset_2.R) reads the FCS files, adds cluster labels for the manually gated clusters, applies a standard `asinh` transform, and saves the data in tab-delimited text format.
 
-- The [processed_data/dataset_2](processed_data/dataset_2/) folder contains the final tab-delimited text files.
+- The [processed_data/dataset_2/](processed_data/dataset_2/) folder contains the final tab-delimited text files.
 
-    - [benchmark_dataset_2_H1.txt](processed_data/dataset_2/benchmark_dataset_2_H1.txt) and [benchmark_dataset_2_H2.txt](processed_data/dataset_2/benchmark_dataset_2_H2.txt) contain the data from the 14 manually gated clusters for the two individuals H1 and H2, with `asinh` transform applied, and cluster labels added. [benchmark_dataset_2_H1_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H1_notransform.txt) and [benchmark_dataset_2_H2_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H2_notransform.txt) contain the same data without the `asinh` transform.
+    - [benchmark_dataset_2_H1.txt](processed_data/dataset_2/benchmark_dataset_2_H1.txt) and [benchmark_dataset_2_H2.txt](processed_data/dataset_2/benchmark_dataset_2_H2.txt) contain the data from the 14 manually gated clusters for the two individuals H1 and H2, with `asinh` transform applied, and cluster labels added.
 
-    - [benchmark_dataset_2_H1_unassigned.txt](processed_data/dataset_2/benchmark_dataset_2_H1_unassigned.txt) and [benchmark_dataset_2_H2_unassigned.txt](processed_data/dataset_2/benchmark_dataset_2_H2_unassigned.txt) contain the unassigned cells for the two individuals H1 and H2, with `asinh` transform applied. Cluster labels are not available for these cells, since the manual gating did not assign them to any cell types. [benchmark_dataset_2_H1_unassigned_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H1_unassigned_notransform.txt) and [benchmark_dataset_2_H2_unassigned_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H2_unassigned_notransform.txt) contain the same data without the `asinh` transform.
+    - [benchmark_dataset_2_H1_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H1_notransform.txt) and [benchmark_dataset_2_H2_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H2_notransform.txt) contain the data from the manually gated clusters without the `asinh` transform.
+
+    - [benchmark_dataset_2_H1_unassigned.txt](processed_data/dataset_2/benchmark_dataset_2_H1_unassigned.txt) and [benchmark_dataset_2_H2_unassigned.txt](processed_data/dataset_2/benchmark_dataset_2_H2_unassigned.txt) contain the unassigned cells for the two individuals H1 and H2, with `asinh` transform applied. Cluster labels are not available for these cells, since the manual gating did not assign them to any cell types.
+
+    - [benchmark_dataset_2_H1_unassigned_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H1_unassigned_notransform.txt) and [benchmark_dataset_2_H2_unassigned_notransform.txt](processed_data/dataset_2/benchmark_dataset_2_H2_unassigned_notransform.txt) contain the data from the unassigned cells without the `asinh` transform.
 
 
 ## More information
