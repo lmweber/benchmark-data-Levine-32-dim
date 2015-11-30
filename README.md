@@ -74,7 +74,7 @@ This data set contains `n = 265,627` cells. The dimensionality is `p = 32` surfa
 
 ### Purpose
 
-We have written R code to pre-process and export these benchmark data sets in standard text-based format, to make it easier for researchers from other fields to access them to test clustering algorithms. This repository contains R code for the 32-dimensional data set, and the companion repository at [benchmark-data-Levine-13-dim](https://github.com/lmweber/benchmark-data-Levine-13-dim) contains code for the 13-dimensional data set.
+We have written R code to pre-process and export these benchmark data sets in standard text-based format, to make it easier for researchers from other fields to access them to test clustering algorithms. This repository contains R code for the 32-dimensional data set, and the companion repository [benchmark-data-Levine-13-dim](https://github.com/lmweber/benchmark-data-Levine-13-dim) contains code for the 13-dimensional data set.
 
 The publicly available data files provided by Levine et al. (2015) through Cytobank are in FCS (Flow Cytometry Standard) format, with one FCS file per manually gated cell population (cluster). The FCS format is an efficient binary file format, which is effectively the standard in the flow cytometry community. However, it requires specialized software tools to access, making it relatively inaccessible for researchers from other disciplines.
 
@@ -96,11 +96,11 @@ The R script in this repository performs the following steps:
 
 The files in this repository are:
 
-- [prepare_data_Levine_2015_marrow_32.R](prepare_data_Levine_2015_marrow_32): R script to load, pre-process, and export data files for the 32-dimensional benchmark data set ("Levine_2015_marrow_32")
+- [prepare_data_Levine_2015_marrow_32.R](prepare_data_Levine_2015_marrow_32.R): R script to load, pre-process, and export data files for the 32-dimensional benchmark data set ("Levine_2015_marrow_32")
 
 - [population_names_Levine_2015_marrow_32.txt](data/population_names_Levine_2015_marrow_32.txt): cell population names for each of the 14 clusters
 
-- FCS files in folder [data/](data/): exported data files in FCS format
+- FCS files in folder [data](data/): exported data files in FCS format
     - [Levine_2015_marrow_32.fcs](data/Levine_2015_marrow_32.fcs): main data file (transformed data, with cluster labels, and labels for each individual)
     - [Levine_2015_marrow_32_unassigned.fcs](data/Levine_2015_marrow_32_unassigned.fcs): additional file for "unassigned" cells (cells without cluster labels)
     - [Levine_2015_marrow_32_notransform.fcs](data/Levine_2015_marrow_32_notransform.fcs): main data file without arcsinh transform
