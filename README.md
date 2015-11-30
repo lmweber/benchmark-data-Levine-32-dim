@@ -5,7 +5,7 @@ This repository contains R code to prepare benchmark data set `Levine_2015_marro
 
 The data set is a 32-dimensional mass cytometry data set, consisting of protein expression levels for `n = 265,627` cells, `p = 32` protein markers (dimensions), and `k = 14` manually gated cell populations (clusters), from `h = 2` individuals. Cluster labels are available for 39% (104,184) of the cells. For more details see below.
 
-The repository [benchmark-data-Levine-2015-marrow-13](https://github.com/lmweber/benchmark-data-Levine-2015-marrow-13) contains R code to prepare a second benchmark data set with lower dimensionality (13 dimensions).
+The repository [benchmark-data-Levine-13-dim](https://github.com/lmweber/benchmark-data-Levine-13-dim) contains R code to prepare a second benchmark data set with lower dimensionality (13 dimensions).
 
 The data set is sourced from the following paper:
 
@@ -74,7 +74,7 @@ This data set contains `n = 265,627` cells. The dimensionality is `p = 32` surfa
 
 ### Purpose
 
-We have written R code to pre-process and export these benchmark data sets in standard text-based format, to make it easier for researchers from other fields to access them to test clustering algorithms. This repository contains R code for the 32-dimensional data set, and the companion repository at [benchmark-data-Levine-2015-marrow-13](https://github.com/lmweber/benchmark-data-Levine-2015-marrow-13) contains code for the 13-dimensional data set.
+We have written R code to pre-process and export these benchmark data sets in standard text-based format, to make it easier for researchers from other fields to access them to test clustering algorithms. This repository contains R code for the 32-dimensional data set, and the companion repository at [benchmark-data-Levine-13-dim](https://github.com/lmweber/benchmark-data-Levine-13-dim) contains code for the 13-dimensional data set.
 
 The publicly available data files provided by Levine et al. (2015) through Cytobank are in FCS (Flow Cytometry Standard) format, with one FCS file per manually gated cell population (cluster). The FCS format is an efficient binary file format, which is effectively the standard in the flow cytometry community. However, it requires specialized software tools to access, making it relatively inaccessible for researchers from other disciplines.
 
