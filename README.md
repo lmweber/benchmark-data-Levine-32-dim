@@ -1,5 +1,5 @@
-Clustering benchmark data set: Levine_2015_marrow_32
-====================================================
+Clustering benchmark data: 32-dimensional data set from Levine et al. (2015)
+============================================================================
 
 This repository contains R code to prepare benchmark data set `Levine_2015_marrow_32`, which can be used to test clustering algorithms.
 
