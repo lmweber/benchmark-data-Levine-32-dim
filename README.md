@@ -87,9 +87,9 @@ The R script in this repository performs the following steps:
 
 - Load the FCS files
 - Extract cell population names, protein marker names, and labels for each individual
-- Extract cluster labels (one cluster per FCS file; no cluster labels available for "unassigned" cells)
+- Extract cluster labels (one cluster per FCS file; "unassigned" cells are labeled "NA")
 - Apply standard arcsinh transform (scale factor 5 for mass cytometry data)
-- Export data in FCS and tab-delimited TXT format (separate files for assigned/unassigned cells, and with/without arcsinh transform)
+- Export data in FCS and tab-delimited TXT format (separate files with/without arcsinh transform)
 
 
 ### Contents
@@ -102,10 +102,8 @@ The files in this repository are:
 
 - FCS files in folder [data](data/): exported data files in FCS format
     - [Levine_2015_marrow_32.fcs](data/Levine_2015_marrow_32.fcs): main data file (transformed data, with cluster labels, and labels for each individual)
-    - [Levine_2015_marrow_32_unassigned.fcs](data/Levine_2015_marrow_32_unassigned.fcs): additional file for "unassigned" cells (cells without cluster labels)
-    - [Levine_2015_marrow_32_notransform.fcs](data/Levine_2015_marrow_32_notransform.fcs): main data file without arcsinh transform
-    - [Levine_2015_marrow_32_notransform_unassigned.fcs](data/Levine_2015_marrow_32_notransform_unassigned.fcs): additional file for "unassigned" cells, without arcsinh transform
-  
+    - [Levine_2015_marrow_32_notransform.fcs](data/Levine_2015_marrow_32_notransform.fcs): without arcsinh transform
+
 We have not included the exported TXT format files in this repository, since some of them are too large for a GitHub repository (>100 MB). If you need the data files in TXT format, either download the raw data files from Cytobank and run the R script from this repository, or use the R code below to directly load and convert the exported FCS files (change the filename as required):
 
 ```
