@@ -104,7 +104,7 @@ The files in this repository are:
     - [Levine_2015_marrow_32.fcs](data/Levine_2015_marrow_32.fcs): main data file (transformed data, with cluster labels, and labels for each individual)
     - [Levine_2015_marrow_32_notransform.fcs](data/Levine_2015_marrow_32_notransform.fcs): without arcsinh transform
 
-We have not included the exported TXT format files in this repository, since some of them are too large for a GitHub repository (>100 MB). If you need the data files in TXT format, either download the raw data files from Cytobank and run the R script from this repository, or use the R code below to directly load and convert the exported FCS files (change the filename as required):
+We have not included the exported TXT format files in this repository, since they are too large for a GitHub repository (>100 MB). If you need the data files in TXT format, either download the raw data files from Cytobank and run the R script from this repository, or use the R code below to directly load and convert the exported FCS files (change the filename as required):
 
 ```
 # install flowCore package
