@@ -142,7 +142,7 @@ table(data_unassigned[, "individual"])  # 2 individuals (118,888 and 42,555 unas
 #########################
 
 # arcsinh transform
-# using scale factor 5 for mass cytometry data (see Bendall et al. 2011, Supp. Fig. S2)
+# using scale factor 5 for CyTOF data (see Bendall et al. 2011, Supp. Fig. S2)
 
 data_notransform <- data
 data_notransform_unassigned <- data_unassigned
