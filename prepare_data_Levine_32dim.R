@@ -6,8 +6,8 @@
 # gated cell populations. Cells are healthy human bone marrow mononuclear cells (BMMCs),
 # from 2 individuals.
 #
-# This R script pre-processes the data set and exports it in TXT and FCS formats, to make
-# it easier to use with clustering algorithms.
+# This R script pre-processes the data set, adds manually gated cell population labels, 
+# and exports it in .txt and .fcs formats.
 #
 # Source: "benchmark data set 2" in the following paper:
 # Levine et al. (2015), "Data-Driven Phenotypic Dissection of AML Reveals Progenitor-like
