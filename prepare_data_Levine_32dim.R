@@ -1,10 +1,10 @@
 #########################################################################################
 # R script to prepare benchmark data set Levine_32dim
 # 
-# This data set is a 32-dimensional mass cytometry (CyTOF) data set, consisting of
-# expression levels of 32 surface marker proteins. Cluster labels are available for 14
-# manually gated cell populations. Cells are healthy human bone marrow mononuclear cells
-# (BMMCs), from 2 individuals.
+# This is a 32-dimensional mass cytometry (CyTOF) data set, consisting of expression
+# levels of 32 surface marker proteins. Cluster labels are available for 14 manually
+# gated cell populations. Cells are healthy human bone marrow mononuclear cells (BMMCs),
+# from 2 individuals.
 #
 # This R script pre-processes the data set and exports it in TXT and FCS formats, to make
 # it easier to use with clustering algorithms.
